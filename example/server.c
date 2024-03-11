@@ -17,6 +17,7 @@ const char* myhandle(struct request req)
             return send_file(default_html_header, "./html/index.html");
         if (eql(req.path, "/come_here"))
             return send_http_response(default_html_header, "<h1>Hello! you came here!</h1>");
+        else return send_404();
     } else {
         return send_404();
     }
