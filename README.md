@@ -45,3 +45,18 @@ int main()
     return 0;
 }
 ```
+
+### Current Features:
+- Can run a server at a specified port
+- Can serve a folder named static at /static
+- Can send files as http responce
+- Can give you the path, method and protocol
+### TODO:
+- Add feature to give the `get` path.
+- Add feature to give the `post` path.
+- Add feature to change the directory path of the public folder
+- Add feature to give the user an option to add index.html to static folder
+- Add feature to... currectly its just a pre alpha release I have to add alot of features right now!
+
+# Contribute:
+https://www.buymeacoffee.com/rohanvashisht
