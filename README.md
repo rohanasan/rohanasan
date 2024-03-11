@@ -58,5 +58,5 @@ int main()
 - Add feature to give the user an option to add index.html to static folder
 - Add feature to... currectly its just a pre alpha release I have to add alot of features right now!
 
-# Contribute:
+### Contribute:
 https://www.buymeacoffee.com/rohanvashisht
