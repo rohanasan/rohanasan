@@ -27,3 +27,20 @@ rm ./rohanasan_maker.py
 - then run:
 - `make release run` to run your project!
 - Enjoy using Rohanasan!
+
+## Basic hello world looks like this:
+```c
+#include "./include/rohanasan.h"
+
+const char* myhandle(struct request req)
+{
+    return send_http_response(default_html_header,
+        "<h1>Hello from Rohanasan!</h1>");
+}
+
+int main()
+{
+    init(8080);
+    serve(myhandle);
+    return 0;
+}```
