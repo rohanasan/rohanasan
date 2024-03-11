@@ -1,19 +1,14 @@
 # Copyright (c) Rohan Vashisht
 # You can read the license inside the LICENSE file
-
 import os
 import subprocess
-
 def write(file_name, content):
     x = open(file_name, "w")
     x.write(content)
     x.close()
-
-
 def main():
     proj_name = input("Enter the project name (it would be the directory name): ")
     compiler_name = input("Enter the compiler you would use (gcc/clang/tcc/other): ")
-
     make_file_content = f"""PROJNAME = {proj_name}
 
 CC = {compiler_name}
@@ -93,8 +88,5 @@ int main()
     print(f'You project "{proj_name}" has been made successfully and you can run it by running:')
     print(f'cd {proj_name}')
     print('make release run')
-    
-
-
 if __name__ == "__main__":
     main()
