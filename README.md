@@ -16,6 +16,12 @@
   It has all the correct configuration!
 
 # How to use in your project?
-- Run 
+- Open terminal inside the parent folder where you would like to create the folder of your project
+- Run:
+```sh
+curl https://raw.githubusercontent.com/rohanasan/rohanasan_c/main/rohanasan_maker.py -o rohanasan_maker.py
+python3 ./rohanasan_maker.py
+rm ./rohanasan_maker.py
+```
 
 # Building this readme...
