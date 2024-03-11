@@ -3,11 +3,12 @@
 
 > Made with Performance, optimization and ease of use in mind.
 > Currently available in C programming language only
+> Please use a linux/unix/mac kind of os
 
 # How to run example:
 - Run: `git clone https://github.com/rohanasan/rohanasan_c.git`
 - Next, Run: `cd rohanasan_c/example`
-- Make sure you are using a unix like operating system with gcc/clang installed
+- Make sure you are using a linux/unix/mac like operating system with gcc/clang installed
 - Run: `gcc -o server ./server.c`
   or `clang -o server ./server.c` depending on the compiler you want to use/have installed.
 - Run: `./server`
