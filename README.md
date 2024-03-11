@@ -6,7 +6,7 @@
 
 # How to run example:
 - Run: `git clone https://github.com/rohanasan/rohanasan_c.git`
-- Next, Run: cd rohanasan_c/example
+- Next, Run: `cd rohanasan_c/example`
 - Make sure you are using a unix like operating system with gcc/clang installed
 - Run: `gcc -o server ./server.c`
   or `clang -o server ./server.c` depending on the compiler you want to use/have installed.
