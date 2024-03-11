@@ -23,5 +23,7 @@ curl https://raw.githubusercontent.com/rohanasan/rohanasan_c/main/rohanasan_make
 python3 ./rohanasan_maker.py
 rm ./rohanasan_maker.py
 ```
-
-# Building this readme...
+- Now, you `cd` into the folder created my the rohanasan project maker software.
+- then run:
+- `make release run` to run your project!
+- Enjoy using Rohanasan!
