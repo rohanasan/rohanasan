@@ -56,6 +56,7 @@ int main()
 ### TODO:
 - Add feature to give the `get` path.
 - Add feature to give the `post` path.
+- Add feature to handle: /xyz/, /xyz?q=asdf, /xyx/?q=asdf and not only /xyz
 - Add feature to change the directory path of the public folder
 - Add feature to give the user an option to add index.html to static folder
 - Add feature to... currectly its just a pre alpha release I have to add alot of features right now!
