@@ -1,0 +1,15 @@
+# You can use this docker image to host
+# your own backed server on a hosting
+# service like docker or kubernetes
+
+FROM gcc:latest
+
+WORKDIR /app
+
+COPY . /app
+
+RUN gcc -O3 -o server server.c
+
+EXPOSE 8080
+
+ENTRYPOINT ./server
