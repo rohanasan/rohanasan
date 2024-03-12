@@ -21,6 +21,7 @@ int new_socket;
 struct request{
     const char* path;
     const char* method;
+    const char* get_request;
     const char* protocol;
 };
 
@@ -90,22 +91,36 @@ extern inline void* handle_request(void* arg)
     }
 
     char method[10];
-    char path[600];
+    char cur_path[600];
     char protocol[100];
-    sscanf(buffer, "%s %s %s", method, path, protocol);
+    const char* get_request = "";
+    sscanf(buffer, "%s %s %s", method, cur_path, protocol);
+    char* actual_path = (char*)cur_path;
+    if(cur_path[strlen(cur_path)-1] == '/' && !eql(cur_path, "/")){ // if end of url is / remove it and path must obviously not be eql to /
+        cur_path[strlen(cur_path)-1] = '\0';
+    }
+    if(strchr(cur_path, '?') != NULL){
+        // it contains ?
+        char* token = strtok(cur_path, "?");
+        if(token[strlen(token)-1] == '/' && !eql(token, "/")){ // if end of url is / remove it and path must obviously not be eql to /
+            token[strlen(token)-1] = '\0';
+        }
+        actual_path = strdup(token);
+        get_request = token + 1;
+    }
     struct request req;
-    req.method = method;
-    req.path = path;
-    req.protocol = protocol;
-    if (strcmp(method, "GET") == 0 && strncmp(path, "/static/", 8) == 0) {
+    req.method = strdup(method);
+    req.path = actual_path;
+    req.get_request = get_request;
+    req.protocol = strdup(protocol);
+    if (strcmp(method, "GET") == 0 && strncmp(cur_path, "/static/", 8) == 0) {
         char file_path[256];
-        sprintf(file_path, "%s%s", STATIC_FOLDER, path + 8);
+        sprintf(file_path, "%s%s", STATIC_FOLDER, cur_path + 8);
         serve_static_file(new_socket, file_path);
     } else {
         const char* the_response_that_user_wants_to_send = the_function_to_send_to_handle(req);
         write(new_socket, the_response_that_user_wants_to_send, strlen(the_response_that_user_wants_to_send));
     }
-
     close(new_socket);
     pthread_exit(NULL);
 }
