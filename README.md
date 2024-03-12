@@ -21,9 +21,11 @@
 - Open terminal inside the parent folder where you would like to create the folder of your project
 - Run:
 ```sh
-curl https://raw.githubusercontent.com/rohanasan/rohanasan_c/main/rohanasan_maker.py -o rohanasan_maker.py
-python3 ./rohanasan_maker.py
-rm ./rohanasan_maker.py
+curl https://raw.githubusercontent.com/rohanasan/rohanasan_c/main/project_maker.c -o project_maker.c
+gcc ./project_maker.c
+./a.out
+rm ./project_maker.c
+rm ./a.out
 ```
 - Now, you `cd` into the folder created my the rohanasan project maker software.
 - then run:
