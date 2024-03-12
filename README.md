@@ -30,7 +30,7 @@ rm ./rohanasan_maker.py
 - `make release run` to run your project!
 - Enjoy using Rohanasan!
 
-## Basic hello world looks like this:
+## html responce hello world looks like this:
 ```c
 #include "./include/rohanasan.h"
 
