@@ -48,6 +48,9 @@ int main()
 }
 ```
 
+## Discord server link:
+https://discord.gg/Yg2A3mEret
+
 ### Current Features:
 - Can run a server at a specified port
 - Can serve a folder named static at /static
