@@ -93,7 +93,7 @@ int main() {
     write_to_file("server.c", 
 "// This is a file that you can edit as per your needs!\n"
 "#include \"./include/rohanasan.h\"\n\n"
-"const char* myhandle(struct request req)\n"
+"const char* handle(struct request req)\n"
 "{\n"
 "    if (eql(req.method, \"GET\")) {\n"
 "        if (eql(req.path, \"/\"))\n"
@@ -109,7 +109,7 @@ int main() {
 "{\n"
 "    printf(\"Listening at http://localhost:8080\\n\");\n"
 "    init(8080);\n"
-"    serve(myhandle);\n"
+"    serve(handle);\n"
 "}\n");
 
     write_to_file(".gitignore", "*.out");
