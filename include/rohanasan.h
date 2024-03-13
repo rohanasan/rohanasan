@@ -83,7 +83,7 @@ extern inline void serve_static_file(int client_socket, char* file_path)
 
     // Send HTTP response header with correct content type
     char response_header[BUFFER_SIZE];
-    sprintf(response_header, "HTTP/1.1 200 OK\nContent-Type: %s\n\n", content_type);
+    snprintf(response_header, sizeof(response_header), "HTTP/1.1 200 OK\nContent-Type: %s\n\n", content_type);
     write(client_socket, response_header, strlen(response_header));
 
     // Send file content
@@ -135,7 +135,7 @@ extern inline void* handle_request(void* arg)
     req.protocol = strdup(protocol);
     if (strcmp(method, "GET") == 0 && strncmp(cur_path, "/static/", 8) == 0) {
         char file_path[256];
-        sprintf(file_path, "%s%s", STATIC_FOLDER, cur_path + 8);
+        snprintf(file_path, sizeof(file_path), "%s%s", STATIC_FOLDER, cur_path + 8);
         serve_static_file(new_socket, file_path);
     } else {
         const char* the_response_that_user_wants_to_send = the_function_to_send_to_handle(req);

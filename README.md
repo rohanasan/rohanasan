@@ -32,11 +32,11 @@ rm ./a.out
 - `make release run` to run your project!
 - Enjoy using Rohanasan!
 
-## html responce hello world looks like this:
+## html response hello world looks like this:
 ```c
 #include "./include/rohanasan.h"
 
-const char* myhandle(struct request req)
+const char* handle(struct request req)
 {
     return send_http_response(default_html_header,
         "<h1>Hello from Rohanasan!</h1>");
@@ -45,7 +45,7 @@ const char* myhandle(struct request req)
 int main()
 {
     init(8080);
-    serve(myhandle);
+    serve(handle);
     return 0;
 }
 ```
@@ -56,7 +56,7 @@ https://discord.gg/Yg2A3mEret
 ### Current Features:
 - Can run a server at a specified port
 - Can serve a folder named static at /static
-- Can send files as http responce
+- Can send files as http response
 - Can give you the path, method and protocol
 ### TODO:
 - Add feature to give the `get` path. ☑️ Just did it!

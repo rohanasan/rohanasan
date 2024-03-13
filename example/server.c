@@ -1,5 +1,5 @@
 // This is an example file which you can run
-// by following the steps mentiond here:
+// by following the steps mentioned here:
 // 1) git clone this repo
 // 2) cd into rohanasan_c folder
 // 3) cd into example directory
@@ -10,7 +10,7 @@
 
 #include "../include/rohanasan.h"
 
-const char* myhandle(struct request req)
+const char* handle(struct request req)
 {
     if (eql(req.method, "GET")) {
         if (eql(req.path, "/"))
@@ -27,5 +27,5 @@ int main()
 {
     printf("Listening at http://localhost:8080\n");
     init(8080);
-    serve(myhandle);
+    serve(handle);
 }
