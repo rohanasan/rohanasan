@@ -13,11 +13,17 @@
 const char* handle(struct request req)
 {
     if (eql(req.method, "GET")) {
+        // Lets see if there was a get request:
+        printf("The post request details: %s\n", req.get_request);
+        // Lets handle:
         if (eql(req.path, "/"))
             return send_file(default_html_header, "./html/index.html");
         if (eql(req.path, "/come_here"))
             return send_http_response(default_html_header, "<h1>Hello! you came here!</h1>");
         else return send_404();
+    } else if (eql(req.method), "POST"){
+          printf("The post request details: %s\n", req.post_request);
+          return send_http_response(default_html_header, "<h1>Thanks for submitting a form!</h1>");
     } else {
         return send_404();
     }
