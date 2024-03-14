@@ -21,7 +21,7 @@ const char* handle(struct request req)
         if (eql(req.path, "/come_here"))
             return send_http_response(default_html_header, "<h1>Hello! you came here!</h1>");
         else return send_404();
-    } else if (eql(req.method), "POST"){
+    } else if (eql(req.method, "POST")){
           printf("The post request details: %s\n", req.post_request);
           return send_http_response(default_html_header, "<h1>Thanks for submitting a form!</h1>");
     } else {
