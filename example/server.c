@@ -33,5 +33,6 @@ int main()
 {
     printf("Listening at http://localhost:8080\n");
     init(8080);
+    set_static_folder("./static/"); // make sure it ends with a /
     serve(handle);
 }

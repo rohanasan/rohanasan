@@ -27,12 +27,17 @@
 #include <stdbool.h>
 
 #define BUFFER_SIZE 1024
-#define STATIC_FOLDER "static/"
 #define GET "GET"
 #define POST "POST"
 #define error404header "HTTP/1.1 404 Not Found\nContent-Type: text/html\n\n"
 #define default_html_header "HTTP/1.1 200 OK\nContent-Type: text/html\n\n"
 #define default_any_text_content_header "HTTP/1.1 200 OK\nContent-Type: text/plain\n\n"
+
+char STATIC_FOLDER[256] = "static/";
+
+extern inline void set_static_folder(const char *new_path) {
+     snprintf(STATIC_FOLDER, 255, "%s", new_path);
+}
 
 extern inline bool eql(const char *x, const char *y) {
   if (strcmp(x, y) == 0) {

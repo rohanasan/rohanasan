@@ -63,7 +63,7 @@ https://discord.gg/Yg2A3mEret
 - Add feature to give the `get` path. ☑️ Just did it! And Fixed it!
 - Add feature to give the `post` path. ☑️ Just did it! And tested!
 - Add feature to handle: /xyz/, /xyz?q=asdf, /xyx/?q=asdf and not only /xyz ☑️ Did this as well!
-- Add feature to change the directory path of the public folder
+- Add feature to change the directory path of the public folder ☑️ Done!!!!
 - Add feature to give the user an option to add index.html to static folder
 - Add feature to... currectly its just a pre alpha release I have to add alot of features right now!
 
