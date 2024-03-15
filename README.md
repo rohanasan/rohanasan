@@ -54,6 +54,7 @@ int main()
 https://discord.gg/Yg2A3mEret
 
 ### Current Features:
+- Asyncronous file request handeling
 - Can run a server at a specified port
 - Can serve a folder named static at /static
 - Can send files as http response
