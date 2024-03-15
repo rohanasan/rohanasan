@@ -31,6 +31,7 @@
 #define POST "POST"
 #define error404header "HTTP/1.1 404 Not Found\nContent-Type: text/html\n\n"
 #define default_html_header "HTTP/1.1 200 OK\nContent-Type: text/html\n\n"
+#define default_json_header "HTTP/1.1 200 OK\nContent-Type: application/json\n\n"
 #define default_any_text_content_header "HTTP/1.1 200 OK\nContent-Type: text/plain\n\n"
 
 char STATIC_FOLDER[256] = "static/";
