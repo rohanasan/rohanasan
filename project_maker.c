@@ -88,6 +88,7 @@ int main() {
     chdir("include");
     download_file("https://raw.githubusercontent.com/rohanasan/rohanasan_c/main/include/rohanasan.h", "rohanasan.h");
     download_file("https://raw.githubusercontent.com/rohanasan/rohanasan_c/main/include/string_helper.h", "string_helper.h");
+    download_file("https://raw.githubusercontent.com/rohanasan/rohanasan_c/main/include/uri.h", "uri.h");
     chdir("../");
     write_to_file("makefile", make_file_content);
     write_to_file("server.c", 
