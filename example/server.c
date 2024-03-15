@@ -14,7 +14,7 @@ const char* handle(struct request req)
 {
     if (eql(req.method, "GET")) {
         // Lets see if there was a get request:
-        printf("The post request details: %s\n", req.get_request);
+        printf("The get request details: %s\n", req.get_request);
         // Lets handle:
         if (eql(req.path, "/"))
             return send_file(default_html_header, "./html/index.html");
