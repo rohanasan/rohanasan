@@ -2,11 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-extern inline void urldecode2(char *dst, const char *src) {
+
+// Help for this function taken from:
+// https://stackoverflow.com/a/14530993
+
+extern inline void __internal_url_decoding_system__(char *dst, const char *src) {
   char a, b;
   while (*src) {
-    if ((*src == '%') && ((a = src[1]) && (b = src[2])) &&
-        (isxdigit(a) && isxdigit(b))) {
+    if ((*src == '%') && ((a = src[1]) && (b = src[2])) && (isxdigit(a) && isxdigit(b))) {
       if (a >= 'a')
         a -= 'a' - 'A';
       if (a >= 'A')
@@ -33,6 +36,6 @@ extern inline void urldecode2(char *dst, const char *src) {
 
 extern inline const char *uri_decode(const char *input) {
   char *output = (char *)malloc(strlen(input) + 1);
-  urldecode2(output, input);
+  __internal_url_decoding_system__(output, input);
   return (const char*)output;
 }
