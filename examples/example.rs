@@ -1,6 +1,6 @@
-use async_std::task;
-use untitled2::serve;
-use untitled2::{send_file, send_http_response, Request, DEFAULT_HTML_HEADER};
+use rohanasan::{
+    rohanasan, send_file, send_http_response, serve, Request, DEFAULT_HTML_HEADER,
+};
 
 fn handle(req: Request) -> String {
     if req.path == "/" {
@@ -15,5 +15,7 @@ fn handle(req: Request) -> String {
 }
 
 fn main() {
-    task::block_on(serve("0.0.0.0:8080", handle))
+    rohanasan! {
+        serve("0.0.0.0:8080", handle).await;
+    }
 }
