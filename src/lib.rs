@@ -3,8 +3,6 @@ use async_std::prelude::*;
 use async_std::task;
 use std::fs;
 
-const DEBUG: bool = false;
-
 pub const DEFAULT_HTML_HEADER: &str = "HTTP/1.1 200 OK\r\nContent-Type: text/html";
 pub const DEFAULT_404_HEADER: &str = "HTTP/1.1 404 Not Found\r\nContent-Type: text/html";
 pub struct Request {
@@ -12,6 +10,7 @@ pub struct Request {
     pub path: &'static str,
     pub get_request: &'static str,
     pub data: bool,
+    pub protocol: &'static str,
 }
 
 pub async fn handle_connection<F>(mut stream: TcpStream, func: F) -> std::io::Result<()>
@@ -25,7 +24,7 @@ where
         return Ok(());
     }
 
-    let mut request = &buffer[..n];
+    let request = &buffer[..n];
 
     // Parse HTTP headers
     let mut headers: Vec<&[u8]> = Vec::new();
@@ -56,6 +55,7 @@ where
 
     let mut method: &'static str = "POST";
     let mut path: &'static str = "";
+    let mut get_request: &'static str = "";
     let mut protocol: &'static str = "";
     let mut keep_alive = false;
     let mut request_was_correct = true;
@@ -67,18 +67,33 @@ where
                 let our_line = line_of_header.trim().to_lowercase();
                 if our_line.starts_with("get") {
                     method = "GET";
-                    let mut tokens = our_line.clone().leak().split_whitespace().collect::<Vec<&str>>(); // leaks :cry:, just like how tears leak. XD
+                    let tokens = our_line.clone().leak().split_whitespace().collect::<Vec<&str>>(); // leaks :cry:, just like how tears leak. XD
                     if tokens.len() > 1 {
-                        path = &*tokens[1];
+                        if tokens[1].contains('?') {
+                            let parts: Vec<&str> = tokens[1].split('?').collect();
+                            if parts[0].as_bytes()[parts[0].len() - 1] == "/".as_bytes()[0] && parts[0]!="/" {
+                                path = &parts[0][..parts[0].len() - 1];
+                            }
+                            else{
+                                path = parts[0];
+                            }
+                            if parts.len() > 1{
+                                get_request = parts[1];
+                            }
+                        } else {
+                            if tokens[1].as_bytes()[tokens[1].len() - 1] == "/".as_bytes()[0] && tokens[1]!="/"{
+                                path = &tokens[1][..tokens[1].len() - 1];
+                            }else {
+                                path = tokens[1];
+                            }
+                        }
                     }
                     if tokens.len() > 2 {
-                        protocol = &*tokens[2];
+                        protocol = tokens[2];
                     }
                 }
-                if our_line.starts_with("connection") {
-                    if our_line.len() > 11 && our_line.contains("keep-alive") {
-                        keep_alive = true;
-                    }
+                if our_line.starts_with("connection") && our_line.len() > 11 && our_line.contains("keep-alive") {
+                    keep_alive = true;
                 }
             }
             Err(_) => {
@@ -97,6 +112,7 @@ where
             path,
             get_request: "",
             data: keep_alive,
+            protocol
         };
         let answer = func(thing_to_send_to_programmers_function);
 
@@ -134,7 +150,7 @@ where
 }
 
 pub fn send_http_response(header: &str, body: &str, keep_alive: bool) -> String {
-    if keep_alive == true {
+    if keep_alive {
         format!(
             "{}\r\nContent-Length:{}\nConnection:Keep-Alive\r\n\r\n{}",
             header,
@@ -154,5 +170,5 @@ pub fn send_http_response(header: &str, body: &str, keep_alive: bool) -> String 
 pub fn send_file(header: &str, file_path: &str, keep_alive: bool) -> String {
     let contents = fs::read_to_string(file_path)
         .expect("Please place the html files at the correct place, also check the directory from where you are running this server");
-    send_http_response(header, &*contents, keep_alive)
+    send_http_response(header, &contents, keep_alive)
 }
